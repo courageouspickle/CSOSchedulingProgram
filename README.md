@@ -1,1 +1,1 @@
-# CSOSchedulingProgram
+# cso-scheduling
