@@ -398,8 +398,14 @@ public class generateSchedule {
       int badge = tempCSO.getBadge();
       File scheduleRequestFile = new File(SCHEDULE_REQUEST_PATH ,String.format("#%d Schedule Request.csv", badge));
       if (!scheduleRequestFile.exists()) {
-        tempCSO.setHoursReq(0);
-        return new HashMap<Shift, Integer>();
+        scheduleRequestFile = new File(SCHEDULE_REQUEST_PATH ,String.format("#%d Schedule Request - Week 1.csv", badge));
+        if (!scheduleRequestFile.exists()) {
+          scheduleRequestFile = new File(SCHEDULE_REQUEST_PATH ,String.format("#%d Schedule Request - Week 2.csv", badge));
+          if (!scheduleRequestFile.exists()) {
+            tempCSO.setHoursReq(0);
+            return new HashMap<Shift, Integer>();
+          }
+        }
       }
 
       //First build the list of Shift objects which will be the HashMap keys
