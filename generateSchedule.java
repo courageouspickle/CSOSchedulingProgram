@@ -159,8 +159,8 @@ public class generateSchedule {
         for (File csoFile : listOfCSOs) {
           CSO cso = readObject(csoFile, CSO.class);
           cso.initSchedule();
+          System.out.println("\nCSO #" + cso.getBadge() + " " + cso.getRank());
           HashMap<Shift, Integer> schedRequest = scheduleRequest(cso);
-          System.out.println("\nCSO #" + cso.getBadge());
           if (!schedRequest.isEmpty()) {
             System.out.println("Updated successfully.");
           }
@@ -402,6 +402,7 @@ public class generateSchedule {
         if (!scheduleRequestFile.exists()) {
           scheduleRequestFile = new File(SCHEDULE_REQUEST_PATH ,String.format("#%d Schedule Request - Week 2.csv", badge));
           if (!scheduleRequestFile.exists()) {
+            System.out.println("Not able to find Schedule Request file.");
             tempCSO.setHoursReq(0);
             return new HashMap<Shift, Integer>();
           }
